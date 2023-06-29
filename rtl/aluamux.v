@@ -45,7 +45,7 @@ module aluamux (adda_in, alua_in, alua_reg, aa_reg_out, bit_mask, daa_out, hl_re
   /*                                                                                       */
   /*****************************************************************************************/
   always @ (alua_reg or aa_reg_out or bit_mask or daa_out or ii_reg or int_addr or
-            hl_reg_out or ix_reg or iy_reg or pc_reg or rr_reg or rst_addr) begin
+            hl_reg_out or ix_reg or iy_reg or pc_reg or rr_reg or rst_addr, tmp_reg) begin
     alua_in_0  = 16'h0;
     alua_in_1  = 16'h0;
     alua_in_2  = 16'h0;

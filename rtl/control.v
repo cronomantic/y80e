@@ -402,7 +402,7 @@ module control (add_sel, alua_sel, alub_sel, aluop_sel, cflg_en, di_ctl, do_ctl,
   /*                                                                                       */
   /*****************************************************************************************/
   always @ (inst_reg or page_reg or state_reg or carry_bit or dmar_reg or intr_reg or
-            par_bit or sign_bit or tflg_reg or vector_int or xhlt_reg or zero_bit) begin
+            par_bit or sign_bit or tflg_reg or vector_int or xhlt_reg or zero_bit or int_req) begin
     casex (state_reg) //synopsys parallel_case
       `DEC1: begin
         casex (inst_reg) //synopsys parallel_case
@@ -1022,7 +1022,7 @@ module control (add_sel, alua_sel, alub_sel, aluop_sel, cflg_en, di_ctl, do_ctl,
   /*  transaction type control                                                             */
   /*                                                                                       */
   /*****************************************************************************************/
-  always @ (inst_reg or page_reg or state_reg or carry_bit or dmar_reg or intr_reg or
+  always @ (inst_reg or page_reg or state_reg or carry_bit or dmar_reg or intr_reg or int_req or
             par_bit or sign_bit or tflg_reg or vector_int or xhlt_reg or zero_bit) begin
     casex (state_reg) //synopsys parallel_case
       `IF2B:                tran_sel = `TRAN_IF;
@@ -1373,7 +1373,7 @@ module control (add_sel, alua_sel, alub_sel, aluop_sel, cflg_en, di_ctl, do_ctl,
   /*  special transaction identifiers                                                      */
   /*                                                                                       */
   /*****************************************************************************************/
-  always @ (inst_reg or page_reg or state_reg or xhlt_reg) begin
+  always @ (inst_reg or page_reg or state_reg or xhlt_reg or int_req) begin
     casex (state_reg)
       `PCO,
       `HLTB: begin
@@ -1404,7 +1404,7 @@ module control (add_sel, alua_sel, alub_sel, aluop_sel, cflg_en, di_ctl, do_ctl,
   /*  output inhibit                                                                       */
   /*                                                                                       */
   /*****************************************************************************************/
-  always @ (inst_reg or page_reg or state_reg or dmar_reg or xhlt_reg) begin
+  always @ (inst_reg or page_reg or state_reg or dmar_reg or xhlt_reg or int_req) begin
     casex (state_reg)
       `IF1B: begin
         casex ({page_reg, inst_reg}) //synopsys parallel_case

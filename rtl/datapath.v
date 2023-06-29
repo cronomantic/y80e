@@ -257,7 +257,7 @@ module datapath (addr_reg_in, carry_bit, dmar_reg, dout_io_reg, dout_mem_reg, in
   /* register control                                                                      */
   /*                                                                                       */
   /*****************************************************************************************/
-  always @ (pc_sel or dmar_reg or intr_reg or valid_dma or valid_int or wait_st) begin
+  always @ (pc_sel or dmar_reg or intr_reg or valid_dma or valid_int or wait_st or ief1_reg or valid_nmi) begin
     case (pc_sel)
       `PC_LD:    ld_pc = !wait_st;                         /* load PC unconditionally      */
       `PC_NILD:  ld_pc = !((ief1_reg && valid_int) || valid_nmi || valid_dma) && !wait_st;
